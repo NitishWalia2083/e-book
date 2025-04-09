@@ -1,0 +1,89 @@
+<div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <h2 class="text-2xl font-bold mb-6 text-center">Sign Up</h2>
+        <form [formGroup]="signupForm" (ngSubmit)="signup()" class="space-y-4">
+            <div>
+                <input formControlName="name" type="text" placeholder="Full Name" class="w-full p-2 border rounded"
+                    [class.border-red-500]="name?.invalid && name?.dirty" />
+                <div *ngIf="name?.invalid && name?.dirty" class="text-red-500 text-sm mt-1">
+                    <div *ngIf="name?.errors?.['required']">Name is required</div>
+                    <div *ngIf="name?.errors?.['minlength']">Name must be at least 3 characters</div>
+                    <div *ngIf="name?.errors?.['pattern']">Name can only contain letters and spaces</div>
+                </div>
+            </div>
+
+            <div>
+                <input formControlName="email" type="email" placeholder="Email" class="w-full p-2 border rounded"
+                    [class.border-red-500]="email?.invalid && email?.dirty" />
+                <div *ngIf="email?.invalid && email?.dirty" class="text-red-500 text-sm mt-1">
+                    <div *ngIf="email?.errors?.['required']">Email is required</div>
+                    <div *ngIf="email?.errors?.['email'] || email?.errors?.['pattern']">
+                        Please enter a valid email address (e.g., example&#64;domain.com)
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <input formControlName="username" type="text" placeholder="Username" class="w-full p-2 border rounded"
+                    [class.border-red-500]="username?.invalid && username?.dirty" />
+                <div *ngIf="username?.invalid && username?.dirty" class="text-red-500 text-sm mt-1">
+                    <div *ngIf="username?.errors?.['required']">Username is required</div>
+                    <div *ngIf="username?.errors?.['minlength']">Username must be at least 3 characters</div>
+                    <div *ngIf="username?.errors?.['pattern']">Username can only contain letters and numbers</div>
+                </div>
+            </div>
+
+            <div class="relative">
+                <div class="relative">
+                    <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Password"
+                        class="w-full p-2 border rounded pr-16"
+                        [class.border-red-500]="password?.invalid && password?.dirty" />
+                    <button type="button" (click)="togglePasswordVisibility()"
+                        class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700">
+                        {{ showPassword ? 'Hide' : 'Show' }}
+                    </button>
+                </div>
+                <div *ngIf="password?.invalid && password?.dirty" class="text-red-500 text-sm mt-1">
+                    <div *ngIf="password?.errors?.['required']">Password is required</div>
+                    <div *ngIf="!passwordRequirements.hasMinLength">Password must be at least 8 characters</div>
+                    <div *ngIf="password?.errors?.['pattern']">
+                        Password must contain:
+                        <ul class="list-disc pl-4 mt-1">
+                            <li *ngIf="!passwordRequirements.hasUpperCase">At least one uppercase letter</li>
+                            <li *ngIf="!passwordRequirements.hasLowerCase">At least one lowercase letter</li>
+                            <li *ngIf="!passwordRequirements.hasNumber">At least one number</li>
+                            <li *ngIf="!passwordRequirements.hasSpecialChar">At least one special character
+                                (!&#64;#$%^&*)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative">
+                <div class="relative flex">
+                    <input [type]="showConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword"
+                        placeholder="Confirm Password" class="w-full p-2 border rounded pr-16"
+                        [class.border-red-500]="confirmPassword?.invalid && confirmPassword?.dirty" />
+                    <button type="button" (click)="toggleConfirmPasswordVisibility()"
+                        class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700">
+                        {{ showConfirmPassword ? 'Hide' : 'Show' }}
+                    </button>
+                </div>
+                <div *ngIf="confirmPassword?.invalid && confirmPassword?.dirty" class="text-red-500 text-sm mt-1">
+                    <div *ngIf="confirmPassword?.errors?.['required']">Please confirm your password</div>
+                    <div *ngIf="signupForm.errors?.['mismatch']">Passwords do not match</div>
+                </div>
+            </div>
+
+            <button type="submit" [disabled]="signupForm.invalid"
+                class="w-full bg-primary text-white p-2 rounded disabled:bg-primary-light cursor-pointer disabled:cursor-not-allowed">
+                Sign Up
+            </button>
+        </form>
+
+        <p class="text-center mt-4 text-sm">
+            Already have an account?
+            <a routerLink="/login" class="text-primary hover:underline">Login</a>
+        </p>
+    </div>
+</div>

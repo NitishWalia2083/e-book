@@ -1,0 +1,36 @@
+<div class="p-5 pb-0 max-w-7xl mx-auto h-screen max-h-[100vh] overflow-hidden">
+    <div class="mb-5 text-center">
+        <button (click)="goBack()"
+            class="px-4 py-2 bg-background-dark border-none rounded cursor-pointer transition-colors duration-200 hover:bg-background">←
+            Back</button>
+        <h1 class="my-2.5 text-text-primary">{{ book?.title }}</h1>
+        <p class="text-text-secondary italic">by {{ book?.author }}</p>
+    </div>
+
+    <div *ngIf="errorMessage" class="text-center p-5 text-red-600 bg-red-100 rounded-lg my-5">
+        {{ errorMessage }}
+    </div>
+    <div
+        class="w-full h-[calc(100vh-285px)] overflow-hidden bg-background rounded-lg shadow-md flex justify-center items-start p-5">
+        <pdf-viewer [src]="pdfSrc" [page]="currentPage" [original-size]="true" [show-all]="true" [zoom]="1"
+            (pageChange)="onPageChange($event)" (after-load-complete)="onLoadComplete($event)" (error)="onError($event)"
+            style="width: 100%; height: 100%;">
+        </pdf-viewer>
+    </div>
+    <div *ngIf="!errorMessage" class="mt-5 p-4 bg-background rounded-lg shadow-md">
+        <div class="h-2 bg-background-dark rounded overflow-hidden mb-2.5">
+            <div class="h-full bg-primary transition-all duration-300" [style.width.%]="progressPercentage"></div>
+        </div>
+        <div class="flex justify-between items-center mb-1">
+            <span class="font-bold text-primary">{{ progressPercentage | number:'1.0-0' }}%</span>
+            <span class="text-text-secondary">Page {{ currentPage }} of {{ totalPages }}</span>
+        </div>
+        <div *ngIf="lastReadTime" class="text-sm text-text-secondary text-right">
+            Last read: {{ lastReadTime | date:'medium' }}
+        </div>
+    </div>
+
+    <div *ngIf="isLoading" class="text-center p-5 text-text-secondary text-lg">
+        Loading PDF...
+    </div>
+</div>

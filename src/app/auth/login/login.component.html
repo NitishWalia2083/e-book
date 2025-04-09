@@ -1,0 +1,52 @@
+<div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <h2 class="text-2xl font-bold mb-6 text-center">Login</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="login()" class="space-y-4">
+            <div>
+                <input formControlName="username" type="text" placeholder="Username" class="w-full p-2 border rounded"
+                    [class.border-red-500]="username?.invalid && username?.dirty" />
+                <div *ngIf="(username?.invalid && username?.dirty)|| emptySubmit" class="text-red-500 text-sm mt-1">
+                    <div *ngIf="username?.errors?.['required']">Username is required</div>
+                    <div *ngIf="username?.errors?.['minlength']">Username must be at least 3 characters</div>
+                    <div *ngIf="username?.errors?.['pattern']">Username can only contain letters and numbers</div>
+                </div>
+            </div>
+
+            <div>
+                <div class="relative flex">
+                    <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Password"
+                        class="w-full p-2 border rounded pr-16"
+                        [class.border-red-500]="password?.invalid && password?.dirty" />
+                    <button type="button" (click)="togglePasswordVisibility()"
+                        class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700">
+                        {{ showPassword ? 'Hide' : 'Show' }}
+                    </button>
+                </div>
+                <div *ngIf="(password?.invalid && password?.dirty) || emptySubmit" class="text-red-500 text-sm mt-1">
+                    <div *ngIf="password?.errors?.['required']">Password is required</div>
+                    <div *ngIf="!passwordRequirements.hasMinLength">Password must be at least 8 characters</div>
+                    <div *ngIf="password?.errors?.['pattern']">
+                        Password must contain:
+                        <ul class="list-disc pl-4 mt-1">
+                            <li *ngIf="!passwordRequirements.hasUpperCase">At least one uppercase letter</li>
+                            <li *ngIf="!passwordRequirements.hasLowerCase">At least one lowercase letter</li>
+                            <li *ngIf="!passwordRequirements.hasNumber">At least one number</li>
+                            <li *ngIf="!passwordRequirements.hasSpecialChar">At least one special character
+                                (!&#64;#$%^&*)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" [disabled]="loginForm.invalid"
+                class="w-full bg-primary text-white p-2 rounded hover:bg-blue-700 disabled:bg-primary-light cursor-pointer disabled:cursor-not-allowed">
+                Login
+            </button>
+        </form>
+
+        <p class="text-center mt-4 text-sm">
+            Don't have an account?
+            <a routerLink="/signup" class="text-primary hover:underline">Sign Up</a>
+        </p>
+    </div>
+</div>

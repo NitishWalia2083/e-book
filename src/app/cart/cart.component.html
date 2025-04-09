@@ -1,0 +1,43 @@
+<div class="container mx-auto p-4">
+    <h2 class="text-2xl font-bold mb-4">Shopping Cart</h2>
+
+    <div *ngIf="cartItems.length === 0" class="text-gray-500">
+        Your cart is empty. <a (click)="navigateToDashboard()"
+            class="text-blue-500 hover:underline cursor-pointer">Continue shopping</a>
+    </div>
+
+    <div *ngIf="cartItems.length > 0">
+        <div *ngFor="let item of cartItems" class="border rounded-lg p-4 mb-4">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h3 class="text-lg font-medium">{{ item.title }}</h3>
+                    <p class="text-gray-600">${{ item.price }}</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center">
+                        <button (click)="updateQuantity(item.bookId, item.quantity - 1)"
+                            class="px-2 py-1 border rounded-l" [disabled]="item.quantity <= 1">-</button>
+                        <input type="number" [(ngModel)]="item.quantity"
+                            (change)="updateQuantity(item.bookId, item.quantity)"
+                            class="w-16 text-center border-t border-b" min="1">
+                        <button (click)="updateQuantity(item.bookId, item.quantity + 1)"
+                            class="px-2 py-1 border rounded-r">+</button>
+                    </div>
+                    <button (click)="removeFromCart(item.bookId)" class="text-red-500 hover:text-red-700">
+                        Remove
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="border-t pt-4 mt-4">
+            <div class="flex justify-between items-center mb-4">
+                <span class="text-lg font-medium">Total:</span>
+                <span class="text-xl font-bold">${{ total }}</span>
+            </div>
+            <button (click)="checkout()" class="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">
+                Proceed to Checkout
+            </button>
+        </div>
+    </div>
+</div>

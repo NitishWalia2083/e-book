@@ -1,59 +1,196 @@
-# EbookDashboard
+# E-Book Dashboard
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.1.
+A modern web application built with Angular for managing and reading digital books. This application provides a seamless experience for users to discover, purchase, and read e-books with features like progress tracking and a responsive design.
 
-## Development server
+![E-Book Dashboard Screenshot](screenshot.png)
 
-To start a local development server, run:
+## Features
+
+- 📚 Browse and search through a collection of e-books
+- 🔐 Secure user authentication (login/signup)
+- 📖 PDF viewer with page navigation and zoom controls
+- 📊 Reading progress tracking
+- 🛒 Shopping cart functionality
+- 📱 Responsive design for all devices
+- 🌓 Light/Dark mode support
+
+## Tech Stack
+
+- **Frontend Framework**: Angular 19.2
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **PDF Handling**: PDF.js
+- **State Management**: Angular Services
+- **Authentication**: JWT-based
+- **Build Tool**: Angular CLI
+- **Package Manager**: npm
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- Node.js (v14 or higher)
+- npm (v6 or higher)
+- Angular CLI (v15 or higher)
+
+## Installation
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/yourusername/ebook-dashboard.git
+cd ebook-dashboard
+```
+
+2. Install dependencies
+
+```bash
+npm install
+```
+
+3. Start the development server
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+4. Open your browser and navigate to `http://localhost:4200`
 
-## Code scaffolding
+## Project Structure
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```
+ebook-dashboard/
+├── src/
+│   ├── app/
+│   │   ├── auth/                 # Authentication components
+│   │   ├── book-detail/          # Book viewer component
+│   │   ├── books-list/           # Book catalog component
+│   │   ├── cart/                 # Shopping cart component
+│   │   ├── dashboard/            # Main dashboard component
+│   │   ├── services/             # Application services
+│   │   └── shared/               # Shared components
+│   ├── assets/
+│   │   ├── e-books/              # PDF files
+│   │   └── images/               # Image assets
+│   └── environments/             # Environment configurations
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Usage
+
+### Authentication
+
+1. Navigate to the login page
+2. Create an account using the signup form
+3. Log in with your credentials
+
+### Browsing Books
+
+1. Access the books list from the dashboard
+2. Use search and filter options to find books
+3. Click on a book to view details
+
+### Reading Books
+
+1. Select a book to open the PDF viewer
+2. Use navigation controls to move between pages
+3. Track your reading progress automatically
+
+### Shopping Cart
+
+1. Add books to your cart
+2. Review your selections
+3. Complete the purchase process
+
+## Development
+
+### Code Style
+
+- Follow Angular style guide
+- Use TypeScript strict mode
+- Implement proper error handling
+- Write unit tests for components and services
+
+### Building for Production
 
 ```bash
-ng generate --help
+ng build --configuration production
 ```
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Running Tests
 
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
+## Contributing
 
-For end-to-end (e2e) testing, run:
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## Deployment
+
+1. Build the application
 
 ```bash
-ng e2e
+ng build --configuration production
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+2. Deploy the contents of the `dist` folder to your web server
 
-## Additional Resources
+3. Configure your web server to:
+   - Serve static files
+   - Handle client-side routing
+   - Enable HTTPS
+   - Set up proper caching
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Environment Variables
+
+Create a `.env` file in the root directory with the following variables:
+
+```env
+API_URL=your_api_url
+PDF_WORKER_URL=assets/pdf.worker.js
+```
+
+## Security
+
+- All routes are protected with authentication
+- Passwords are securely hashed
+- JWT tokens are used for session management
+- HTTPS is enforced in production
+- XSS and CSRF protection are implemented
+
+## Performance
+
+- Lazy loading for feature modules
+- Optimized bundle size
+- Efficient PDF rendering
+- Caching strategies
+- Image optimization
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- [Angular](https://angular.io/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [PDF.js](https://mozilla.github.io/pdf.js/)
+- [ng2-pdf-viewer](https://github.com/VadimDez/ng2-pdf-viewer)
+
+## Contact
+
+Your Name - [@yourtwitter](https://twitter.com/yourtwitter)
+
+Project Link: [https://github.com/yourusername/ebook-dashboard](https://github.com/yourusername/ebook-dashboard)
