@@ -2,17 +2,13 @@
 
 A modern web application built with Angular for managing and reading digital books. This application provides a seamless experience for users to discover, purchase, and read e-books with features like progress tracking and a responsive design.
 
-![E-Book Dashboard Screenshot](screenshot.png)
-
 ## Features
 
-- 📚 Browse and search through a collection of e-books
-- 🔐 Secure user authentication (login/signup)
-- 📖 PDF viewer with page navigation and zoom controls
-- 📊 Reading progress tracking
-- 🛒 Shopping cart functionality
-- 📱 Responsive design for all devices
-- 🌓 Light/Dark mode support
+- Secure user authentication (login/signup)
+- PDF viewer with page navigation and zoom controls
+- Reading progress tracking
+- Shopping cart functionality
+- Responsive design for all devices
 
 ## Tech Stack
 
@@ -31,7 +27,7 @@ Before you begin, ensure you have the following installed:
 
 - Node.js (v14 or higher)
 - npm (v6 or higher)
-- Angular CLI (v15 or higher)
+- Angular CLI 
 
 ## Installation
 
@@ -75,6 +71,28 @@ ebook-dashboard/
 │   └── environments/             # Environment configurations
 ```
 
+## API Integration
+
+The application integrates with the following APIs:
+
+- **Authentication API**: Handles user registration and login
+- **Book API**: Manages book catalog and details
+
+### API Endpoints
+
+```typescript
+// Authentication
+POST /api/auth/login
+POST /api/auth/register
+
+// Books
+GET /api/books
+GET /api/books/:id
+
+// Cart & Payments
+POST /api/cart/add
+POST /api/cart/checkout
+```
 ## Usage
 
 ### Authentication
@@ -108,34 +126,7 @@ ebook-dashboard/
 - Follow Angular style guide
 - Use TypeScript strict mode
 - Implement proper error handling
-- Write unit tests for components and services
 
-### Building for Production
-
-```bash
-ng build --configuration production
-```
-
-### Running Tests
-
-```bash
-ng test
-```
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## Deployment
-
-1. Build the application
-
-```bash
-ng build --configuration production
 ```
 
 2. Deploy the contents of the `dist` folder to your web server
@@ -146,13 +137,7 @@ ng build --configuration production
    - Enable HTTPS
    - Set up proper caching
 
-## Environment Variables
 
-Create a `.env` file in the root directory with the following variables:
-
-```env
-API_URL=your_api_url
-PDF_WORKER_URL=assets/pdf.worker.js
 ```
 
 ## Security
@@ -161,7 +146,6 @@ PDF_WORKER_URL=assets/pdf.worker.js
 - Passwords are securely hashed
 - JWT tokens are used for session management
 - HTTPS is enforced in production
-- XSS and CSRF protection are implemented
 
 ## Performance
 
@@ -169,7 +153,6 @@ PDF_WORKER_URL=assets/pdf.worker.js
 - Optimized bundle size
 - Efficient PDF rendering
 - Caching strategies
-- Image optimization
 
 ## Browser Support
 
@@ -178,19 +161,5 @@ PDF_WORKER_URL=assets/pdf.worker.js
 - Safari (latest)
 - Edge (latest)
 
-## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Acknowledgments
-
-- [Angular](https://angular.io/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [PDF.js](https://mozilla.github.io/pdf.js/)
-- [ng2-pdf-viewer](https://github.com/VadimDez/ng2-pdf-viewer)
-
-## Contact
-
-Your Name - [@yourtwitter](https://twitter.com/yourtwitter)
-
-Project Link: [https://github.com/yourusername/ebook-dashboard](https://github.com/yourusername/ebook-dashboard)
