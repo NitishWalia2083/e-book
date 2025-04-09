@@ -45,7 +45,6 @@ export class ReadingProgressService {
     }
 
     getAllProgress(): ReadingProgress[] {
-        debugger
         const stored = localStorage.getItem(this.STORAGE_KEY);
         return stored ? JSON.parse(stored) : [];
     }
